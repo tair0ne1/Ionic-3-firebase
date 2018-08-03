@@ -11,7 +11,7 @@ export class SaidaProvider {
   }
 
   getAll() {
-    return this.db.list(this.PATH, ref => ref.orderByChild('name'))
+    return this.db.list<Saida>(`${this.PATH}`, ref => ref.orderByChild('name'))
       .snapshotChanges()
       .pipe(
         map(changes => 
@@ -21,12 +21,13 @@ export class SaidaProvider {
   }
   
   get(key: string) {
-    return this.db.object(this.PATH + key).snapshotChanges()
+    return this.db.object(`${this.PATH}${key}`)
+      .snapshotChanges()
       .pipe(
-         map(changes =>
-          changes.map(c => ({ key: c.key, ...c.payload.val() }))
-        )
-      );
+         map(changes =>{
+          return { key: changes.key, ...changes.payload.val() }
+          })
+        );
   }
 
   save(saida: Saida) {

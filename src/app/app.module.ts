@@ -1,3 +1,4 @@
+import { FIREBASE_CONFIG } from './app.firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -9,15 +10,8 @@ import { SaidaProvider } from '../providers/saida/saida';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyDheoECo-hpHR5sRxaBa6Mfhsa7FZ_vT48",
-  authDomain: "controle-3e1e4.firebaseapp.com",
-  databaseURL: "https://controle-3e1e4.firebaseio.com",
-  projectId: "controle-3e1e4",
-  storageBucket: "controle-3e1e4.appspot.com",
-  messagingSenderId: "63452964766"
-};
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +19,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
@@ -38,7 +32,8 @@ export const firebaseConfig = {
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SaidaProvider
+    SaidaProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

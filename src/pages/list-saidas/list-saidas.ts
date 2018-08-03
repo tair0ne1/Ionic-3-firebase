@@ -10,7 +10,7 @@ import { Observable } from '../../../node_modules/rxjs';
   templateUrl: 'list-saidas.html',
 })
 export class ListSaidasPage {
-  saidas: Observable<Saida>;
+  saidas: Observable<any>;
 
   constructor(public navCtrl: NavController, 
               private provider: SaidaProvider,
@@ -30,7 +30,7 @@ export class ListSaidasPage {
     //Maneira 1
     this.navCtrl.push('AddSaidasPage', { saida: saida });
 
-    //Maneira 
+    //Maneira 2
     //this.navCtrl.push('AddSaidasPage', { key: saida.key});
   }
 
