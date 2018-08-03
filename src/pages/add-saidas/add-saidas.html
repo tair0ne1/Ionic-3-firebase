@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.name.valid && (name.dirty || name.touched)" color="danger">
+      <div [hidden]="!form.controls.name.errors.required">
+        Nome é obrigatório.
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Local</ion-label>
+      <ion-input type="text" formControlName="local"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.local.valid && (local.dirty || local.touched)" color="danger">
+      <div [hidden]="!form.controls.local.errors.required">
+        Local é obrigatório.
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Valor</ion-label>
+      <ion-input type="text" formControlName="valor"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.valor.valid && (valor.dirty || valor.touched)" color="danger">
+      <div [hidden]="!form.controls.valor.errors.required">
+        Valor é obrigatório.
+      </div>
+    </ion-item>
+    
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+    </div>
+  </form>
+</ion-content>
