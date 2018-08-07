@@ -23,7 +23,7 @@ export class ListSaidasPage {
   }
 
   newSaida() {
-    this.navCtrl.push('AddSaidasPage');
+    this.navCtrl.parent.select(1);
   }
 
   editSaida(saida: Saida) {

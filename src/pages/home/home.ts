@@ -10,6 +10,7 @@ export class HomePage {
 
   listSaidasRoot = 'ListSaidasPage'
   addSaidasRoot = 'AddSaidasPage'
+  profileRoot = 'ProfilePage'
 
   constructor(public navCtrl: NavController) {}
 

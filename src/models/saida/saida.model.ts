@@ -1,7 +1,7 @@
-import { Profile } from "./profile.model";
+import { Profile } from "../profile/profile.model";
 
 export interface Saida {
-        key;
+        key: string;
 		name: string;
 		local: string;
 		valor: number;

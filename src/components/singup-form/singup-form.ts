@@ -1,7 +1,7 @@
 import { Account } from './../../models/saida/account.model';
 import { Component } from '@angular/core';
 import { AuthProvider } from '../../providers/auth/auth';
-import { ToastController, NavController } from '../../../node_modules/ionic-angular/umd';
+import { ToastController, NavController, LoadingController, Loading } from '../../../node_modules/ionic-angular';
 
 @Component({
   selector: 'app-signup-form',
@@ -9,15 +9,23 @@ import { ToastController, NavController } from '../../../node_modules/ionic-angu
 })
 export class SingupFormComponent {
   account = {} as Account;
+  loading: Loading;
 
   constructor(private auth: AuthProvider,
               private toastCtrl: ToastController,
-              private navCtrl: NavController
-            ) { }
+              private navCtrl: NavController,
+              private loadCtrl: LoadingController
+            ) {
+              this.loading = this.loadCtrl.create({
+                content: 'Fazendo cadastro, aguarde...'
+              });
+            }
 
   register () {
+    this.loading.present();
     this.auth.createAccount(this.account)
       .then(() => {
+        this.loading.dismiss();
         this.showToast('Usuário cadastrado com sucesso!');
         this.navCtrl.pop();
       })
